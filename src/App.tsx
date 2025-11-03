@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
 import Admissions from "./pages/Admissions";
+import Apply from "./pages/Apply";
 import StudentLife from "./pages/StudentLife";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/programs" element={<Programs />} />
             <Route path="/programs/:type" element={<Programs />} />
             <Route path="/admissions" element={<Admissions />} />
+            <Route path="/apply" element={<Apply />} />
             <Route path="/student-life" element={<StudentLife />} />
             <Route path="/contact" element={<Contact />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
