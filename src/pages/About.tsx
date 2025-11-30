@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award, Users, Globe, Target, TrendingUp, Heart } from "lucide-react";
+import { Award, Users, Globe, Target, TrendingUp, Heart, MapPin, BookOpen, Calendar } from "lucide-react";
 
 const About = () => {
   const values = [
@@ -99,6 +99,61 @@ const About = () => {
                 organizations across the globe.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Peakpoint (cards) */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Why Choose Peakpoint?</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our programmes and services are designed to give you a competitive edge.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[
+              {
+                icon: <Award className="h-6 w-6" />,
+                title: "Industry-relevant curriculum",
+                description: "Built in consultation with business, professional bodies and employers.",
+              },
+              {
+                icon: <Calendar className="h-6 w-6" />,
+                title: "Flexible learning paths",
+                description: "Full-time, part-time, weekend, online – shaped for you.",
+              },
+              {
+                icon: <Users className="h-6 w-6" />,
+                title: "Experienced faculty",
+                description: "Practitioners and academics committed to your success.",
+              },
+              {
+                icon: <TrendingUp className="h-6 w-6" />,
+                title: "Entrepreneurial mindset",
+                description:
+                  "Every programme integrates business, innovation and enterprise readiness.",
+              },
+              {
+                icon: <BookOpen className="h-6 w-6" />,
+                title: "Support & resources",
+                description: "Student services, counselling, career guidance, internships and alumni networks.",
+              },
+              {
+                icon: <MapPin className="h-6 w-6" />,
+                title: "Location & access",
+                description: "Based in Kampala, Uganda, with modern facilities and an expanding global view.",
+              },
+            ].map((item, i) => (
+              <Card key={i} className="border-2 hover:border-secondary transition-smooth text-center">
+                <CardContent className="pt-6">
+                  <div className="mb-4 p-3 bg-primary/10 rounded-lg w-fit mx-auto text-primary">{item.icon}</div>
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

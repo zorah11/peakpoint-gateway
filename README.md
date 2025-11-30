@@ -108,6 +108,9 @@ This repository does not include an explicit license file. If you want to open-s
 ## Maintainer / Contact
 - Repository owner: @zorah11
 
+- General contact: `peakpointbusinessschool@gmail.com`
+- Phone: `+256 772 327732`
+
 ---
 
 If you'd like, I can extend this README with more details: usage examples for specific UI components, a screenshots/asset section, CI/CD/deployment instructions (Netlify, Vercel), or an actual `CONTRIBUTING.md` and `LICENSE` file. Tell me which you'd prefer next.

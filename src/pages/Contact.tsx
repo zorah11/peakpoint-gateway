@@ -30,12 +30,12 @@ const Contact = () => {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email Us",
-      details: ["admissions@peakpoint.edu", "info@peakpoint.edu"],
+        details: ["peakpointbusinessschool@gmail.com"],
     },
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Call Us",
-      details: ["+1 (555) 123-4567", "+1 (555) 123-4568 (Admissions)"],
+        details: ["+256 772 327732"],
     },
     {
       icon: <MapPin className="h-6 w-6" />,
@@ -50,10 +50,10 @@ const Contact = () => {
   ];
 
   const departments = [
-    { name: "Admissions Office", email: "admissions@peakpoint.edu", phone: "+1 (555) 123-4568" },
-    { name: "Student Services", email: "students@peakpoint.edu", phone: "+1 (555) 123-4569" },
-    { name: "Career Services", email: "careers@peakpoint.edu", phone: "+1 (555) 123-4570" },
-    { name: "International Office", email: "international@peakpoint.edu", phone: "+1 (555) 123-4571" },
+    { name: "Admissions Office", email: "peakpointbusinessschool@gmail.com", phone: "+256 772 327732" },
+    { name: "Student Services", email: "peakpointbusinessschool@gmail.com", phone: "+256 772 327732" },
+    { name: "Career Services", email: "peakpointbusinessschool@gmail.com", phone: "+256 772 327732" },
+    { name: "International Office", email: "peakpointbusinessschool@gmail.com", phone: "+256 772 327732" },
   ];
 
   return (

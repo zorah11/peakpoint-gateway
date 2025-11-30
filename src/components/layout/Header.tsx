@@ -40,21 +40,7 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        {/* Top Bar */}
-        <div className="flex items-center justify-between py-2 border-b border-border">
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <span>📧 admissions@peakpoint.edu</span>
-            <span>📞 +1 (555) 123-4567</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button variant="secondary" size="sm" asChild>
-              <Link to="/apply">Apply Now</Link>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <Link to="/student-portal">Student Portal</Link>
-            </Button>
-          </div>
-        </div>
+        {/* NOTE: Top contact bar removed per request (email/phone/student portal) */}
 
         {/* Main Navigation */}
         <div className="flex items-center justify-between py-4">
@@ -138,6 +124,11 @@ const Header = () => {
             >
               Contact
             </Link>
+
+            {/* Apply button moved into main navigation */}
+            <Button variant="secondary" size="sm" asChild className="ml-4">
+              <Link to="/apply">Apply Now</Link>
+            </Button>
           </nav>
 
           {/* Mobile Menu */}
@@ -149,6 +140,11 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] bg-card">
               <nav className="flex flex-col gap-4 mt-8">
+                <div className="px-4">
+                  <Button variant="secondary" size="sm" asChild className="w-full">
+                    <Link to="/apply">Apply Now</Link>
+                  </Button>
+                </div>
                 <Link to="/" className="text-lg font-medium hover:text-primary transition-smooth">
                   Home
                 </Link>

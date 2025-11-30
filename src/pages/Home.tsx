@@ -22,23 +22,34 @@ const Home = () => {
   const features = [
     {
       icon: <Award className="h-6 w-6" />,
-      title: "Accredited Programs",
-      description: "Internationally recognized degrees and certifications",
+      title: "Industry-relevant curriculum",
+      description:
+        "Built in consultation with business, professional bodies and employers.",
+    },
+    {
+      icon: <Calendar className="h-6 w-6" />,
+      title: "Flexible learning paths",
+      description: "Full-time, part-time, weekend, online – shaped for you.",
     },
     {
       icon: <Users className="h-6 w-6" />,
-      title: "Expert Faculty",
-      description: "Learn from industry leaders and academic experts",
-    },
-    {
-      icon: <Globe className="h-6 w-6" />,
-      title: "Global Network",
-      description: "Connect with students and alumni worldwide",
+      title: "Experienced faculty",
+      description: "Practitioners and academics committed to your success.",
     },
     {
       icon: <TrendingUp className="h-6 w-6" />,
-      title: "Career Success",
-      description: "95% employment rate within 6 months of graduation",
+      title: "Entrepreneurial mindset",
+      description: "Every programme integrates business, innovation and enterprise readiness.",
+    },
+    {
+      icon: <BookOpen className="h-6 w-6" />,
+      title: "Support & resources",
+      description: "Student services, counselling, career guidance, internships and alumni networks.",
+    },
+    {
+      icon: <MapPin className="h-6 w-6" />,
+      title: "Location & access",
+      description: "Based in Kampala, Uganda, with modern facilities and an expanding global view.",
     },
   ];
 
@@ -142,7 +153,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Choose Peakpoint */}
+      {/* Why Choose Peakpoint (cards) */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -151,7 +162,7 @@ const Home = () => {
               Experience excellence in business education with our unique advantages
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => (
               <Card key={index} className="border-2 hover:border-secondary transition-smooth hover:shadow-lg">
                 <CardContent className="pt-6">
