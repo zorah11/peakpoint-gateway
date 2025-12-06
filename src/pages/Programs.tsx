@@ -1,137 +1,59 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BookOpen, Clock, Calendar, ChevronRight, Award, Users } from "lucide-react";
+import { useEffect } from "react";
+import { programs } from "@/lib/programsData";
 
 const Programs = () => {
-  const programs = [
-    {
-      category: "Undergraduate",
-      badge: "Bachelor's Degree",
-      items: [
-        {
-          title: "Bachelor of Business Administration (BBA)",
-          duration: "4 years",
-          mode: "Full-time",
-          description:
-            "Comprehensive foundation in business principles including management, marketing, finance, and entrepreneurship.",
-          highlights: ["Internship opportunities", "Industry projects", "Global exchange programs"],
-        },
-        {
-          title: "Bachelor of Commerce (B.Com)",
-          duration: "3 years",
-          mode: "Full-time",
-          description:
-            "Focused curriculum in accounting, economics, and business law with strong analytical skills development.",
-          highlights: ["Professional certifications", "Case study methodology", "Research opportunities"],
-        },
-      ],
-    },
-    {
-      category: "Masters",
-      badge: "Postgraduate",
-      items: [
-        {
-          title: "Master of Business Administration (MBA)",
-          duration: "2 years",
-          mode: "Full-time / Part-time",
-          description:
-            "Advanced management education with specializations in strategy, finance, marketing, and operations.",
-          highlights: ["Executive mentorship", "Consulting projects", "International study tours"],
-        },
-        {
-          title: "Master of Finance (MFin)",
-          duration: "1.5 years",
-          mode: "Full-time",
-          description:
-            "Specialized program in corporate finance, investment management, and financial analytics.",
-          highlights: ["Bloomberg Terminal access", "CFA preparation", "Wall Street connections"],
-        },
-        {
-          title: "Master of Marketing (MMark)",
-          duration: "1.5 years",
-          mode: "Full-time",
-          description:
-            "Contemporary marketing strategies, digital marketing, brand management, and consumer behavior.",
-          highlights: ["Agency partnerships", "Live campaigns", "Marketing analytics tools"],
-        },
-      ],
-    },
-    {
-      category: "Professional",
-      badge: "Certificate Programs",
-      items: [
-        {
-          title: "Digital Marketing Certificate",
-          duration: "6 months",
-          mode: "Online / Hybrid",
-          description:
-            "Master SEO, social media marketing, content strategy, and digital analytics.",
-          highlights: ["Google certifications", "Real campaign experience", "Portfolio development"],
-        },
-        {
-          title: "Project Management Professional",
-          duration: "4 months",
-          mode: "Flexible",
-          description:
-            "PMP preparation with agile methodologies, risk management, and leadership skills.",
-          highlights: ["PMP exam prep", "Agile & Scrum certified", "Industry case studies"],
-        },
-        {
-          title: "Data Analytics for Business",
-          duration: "5 months",
-          mode: "Online",
-          description:
-            "Business intelligence, predictive analytics, and data-driven decision making.",
-          highlights: ["Python & R programming", "Tableau expertise", "Real business datasets"],
-        },
-      ],
-    },
-    {
-      category: "Vocational",
-      badge: "Short Courses",
-      items: [
-        {
-          title: "Accounting Fundamentals",
-          duration: "3 months",
-          mode: "Part-time",
-          description: "Essential accounting principles, bookkeeping, and financial reporting basics.",
-          highlights: ["QuickBooks training", "Excel for accounting", "Tax fundamentals"],
-        },
-        {
-          title: "Business Communication Skills",
-          duration: "2 months",
-          mode: "Weekend",
-          description:
-            "Professional writing, presentation skills, and business correspondence.",
-          highlights: ["Public speaking", "Email etiquette", "Meeting facilitation"],
-        },
-      ],
-    },
-  ];
+  const { type } = useParams();
+
+  const filteredPrograms = type
+    ? programs.filter((p) => p.id === type)
+    : programs;
+
+  const isSingleProgram = filteredPrograms.length === 1;
+  const activeProgram = isSingleProgram ? filteredPrograms[0] : null;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [type]);
 
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-hero text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">Find Your Path</Badge>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Programs</h1>
-          <p className="text-xl max-w-3xl mx-auto text-primary-foreground/90">
-            From undergraduate degrees to professional certifications, find the perfect program to advance your career
+          <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">
+            {activeProgram ? activeProgram.badge : "Find Your Path"}
+          </Badge>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            {activeProgram ? activeProgram.category : "Our Programs"}
+          </h1>
+          <p className="text-xl max-w-3xl mx-auto text-primary-foreground/90 whitespace-pre-line">
+            {activeProgram
+              ? (activeProgram as any).description
+              : "Explore our diverse range of academic and professional programs designed to help you succeed."}
           </p>
         </div>
       </section>
 
       {/* Programs Sections */}
-      {programs.map((section, sectionIndex) => (
+      {filteredPrograms.map((section, sectionIndex) => (
         <section key={sectionIndex} className={`py-20 ${sectionIndex % 2 === 1 ? "bg-muted/30" : ""}`}>
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <Badge className="mb-4 bg-primary text-primary-foreground">{section.badge}</Badge>
-              <h2 className="text-4xl font-bold mb-4">{section.category} Programs</h2>
-            </div>
+            {!isSingleProgram && (
+              <div className="text-center mb-12">
+                <Badge className="mb-4 bg-primary text-primary-foreground">{section.badge}</Badge>
+                <h2 className="text-4xl font-bold mb-4">{section.category}</h2>
+                {(section as any).description && (
+                  <div className="max-w-3xl mx-auto text-muted-foreground whitespace-pre-line text-lg mt-4">
+                    {(section as any).description}
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {section.items.map((program, index) => (
@@ -168,8 +90,8 @@ const Programs = () => {
                     </div>
 
                     <Button variant="secondary" className="w-full" asChild>
-                      <Link to="/admissions">
-                        Apply Now <ChevronRight className="ml-2 h-4 w-4" />
+                      <Link to="/apply">
+                        Apply <ChevronRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
                   </CardContent>

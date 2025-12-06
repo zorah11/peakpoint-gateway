@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, MapPin, Clock, Facebook, Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Facebook, Twitter, Linkedin, Instagram, Youtube, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -30,17 +30,22 @@ const Contact = () => {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email Us",
-        details: ["peakpointbusinessschool@gmail.com"],
+        details: ["admissions@peakpointbusinessschool.com"],
     },
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Call Us",
-        details: ["+256 772 327732"],
+        details: ["+256772327732", "+256782996126"],
+    },
+    {
+      icon: <MessageCircle className="h-6 w-6" />,
+      title: "WhatsApp",
+      details: ["+256772327732"],
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Visit Us",
-      details: ["123 Education Boulevard", "Business District, ED 12345"],
+      details: ["Namugongo - Kampala, Uganda"],
     },
     {
       icon: <Clock className="h-6 w-6" />,
@@ -49,12 +54,7 @@ const Contact = () => {
     },
   ];
 
-  const departments = [
-    { name: "Admissions Office", email: "peakpointbusinessschool@gmail.com", phone: "+256 772 327732" },
-    { name: "Student Services", email: "peakpointbusinessschool@gmail.com", phone: "+256 772 327732" },
-    { name: "Career Services", email: "peakpointbusinessschool@gmail.com", phone: "+256 772 327732" },
-    { name: "International Office", email: "peakpointbusinessschool@gmail.com", phone: "+256 772 327732" },
-  ];
+
 
   return (
     <div className="min-h-screen pt-32">
@@ -153,20 +153,25 @@ const Contact = () => {
                   Follow Us
                 </h3>
                 <div className="flex gap-3">
-                  <Button variant="outline" size="icon">
-                    <Facebook className="h-5 w-5" />
+                  <Button variant="outline" size="icon" asChild>
+                    <a href="https://www.facebook.com/profile.php?id=61583443073536" target="_blank" rel="noopener noreferrer">
+                      <Facebook className="h-5 w-5" />
+                    </a>
                   </Button>
-                  <Button variant="outline" size="icon">
-                    <Twitter className="h-5 w-5" />
+                  <Button variant="outline" size="icon" asChild>
+                    <a href="https://x.com/peakpointbusscl" target="_blank" rel="noopener noreferrer">
+                      <Twitter className="h-5 w-5" />
+                    </a>
                   </Button>
-                  <Button variant="outline" size="icon">
-                    <Linkedin className="h-5 w-5" />
+                  <Button variant="outline" size="icon" asChild>
+                    <a href="https://www.linkedin.com/company/peakpoint-business-school/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
+                      <Linkedin className="h-5 w-5" />
+                    </a>
                   </Button>
-                  <Button variant="outline" size="icon">
-                    <Instagram className="h-5 w-5" />
-                  </Button>
-                  <Button variant="outline" size="icon">
-                    <Youtube className="h-5 w-5" />
+                  <Button variant="outline" size="icon" asChild>
+                    <a href="https://www.youtube.com/@PeakpointBusinessSchool" target="_blank" rel="noopener noreferrer">
+                      <Youtube className="h-5 w-5" />
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -175,37 +180,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Departments */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Department Contacts</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Reach out to specific departments for specialized assistance
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {departments.map((dept, index) => (
-              <Card key={index} className="border-2 hover:border-secondary transition-smooth">
-                <CardContent className="pt-6 text-center">
-                  <h3 className="font-bold mb-4">{dept.name}</h3>
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <p className="flex items-center justify-center gap-2">
-                      <Mail className="h-4 w-4 text-primary" />
-                      {dept.email}
-                    </p>
-                    <p className="flex items-center justify-center gap-2">
-                      <Phone className="h-4 w-4 text-primary" />
-                      {dept.phone}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Map Section */}
       <section className="py-20">

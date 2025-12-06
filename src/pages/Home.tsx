@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import {
-  GraduationCap,
   Users,
   Award,
   BookOpen,
@@ -14,9 +13,14 @@ import {
   Star,
   Clock,
   MapPin,
+  Phone,
+  Facebook,
+  Linkedin,
+  Twitter,
+  Youtube,
 } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
-import campusImage from "@/assets/campus-image.jpg";
+import { programs } from "@/lib/programsData";
 
 const Home = () => {
   const features = [
@@ -53,29 +57,7 @@ const Home = () => {
     },
   ];
 
-  const programs = [
-    {
-      title: "Undergraduate Programs",
-      description: "Build a strong foundation in business fundamentals",
-      duration: "3-4 years",
-      mode: "Full-time",
-      href: "/programs/undergraduate",
-    },
-    {
-      title: "Masters Programs",
-      description: "Advanced business education for career advancement",
-      duration: "1-2 years",
-      mode: "Full-time / Part-time",
-      href: "/programs/masters",
-    },
-    {
-      title: "Professional Courses",
-      description: "Specialized skills for working professionals",
-      duration: "3-12 months",
-      mode: "Flexible",
-      href: "/programs/professional",
-    },
-  ];
+
 
   const testimonials = [
     {
@@ -101,26 +83,7 @@ const Home = () => {
     },
   ];
 
-  const upcomingEvents = [
-    {
-      title: "Open Day 2024",
-      date: "March 15, 2024",
-      time: "10:00 AM - 4:00 PM",
-      location: "Main Campus",
-    },
-    {
-      title: "Business Leaders Summit",
-      date: "March 22, 2024",
-      time: "2:00 PM - 6:00 PM",
-      location: "Conference Hall",
-    },
-    {
-      title: "Career Fair",
-      date: "April 5, 2024",
-      time: "9:00 AM - 5:00 PM",
-      location: "Sports Complex",
-    },
-  ];
+
 
   return (
     <div className="min-h-screen">
@@ -132,26 +95,25 @@ const Home = () => {
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center text-primary-foreground">
           <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">
-            Ranked #1 Business School 2024
+            Welcome
           </Badge>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 max-w-4xl mx-auto">
-            Shape Your Future at Peakpoint Business School
+            Peakpoint Business School
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
-            World-class business education designed for tomorrow's leaders
+          <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90 max-w-3xl mx-auto">
+            At Peakpoint Business School, we believe the journey to success begins with relevant, dynamic and
+            industry-aligned education. Whether you are entering the workforce, advancing your professional
+            certification, or stepping up to leadership roles, we offer the programmes to empower your next move.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg" asChild>
-              <Link to="/apply">
-                Apply Now <ChevronRight className="ml-2" />
-              </Link>
-            </Button>
             <Button variant="heroPrimary" size="lg" asChild>
-              <Link to="/programs">Explore Programs</Link>
+              <Link to="/login">Login</Link>
             </Button>
           </div>
         </div>
       </section>
+
+
 
       {/* Why Choose Peakpoint (cards) */}
       <section className="py-20 bg-muted/30">
@@ -187,79 +149,37 @@ const Home = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {programs.map((program, index) => (
-              <Card key={index} className="hover:shadow-lg transition-smooth">
-                <CardContent className="pt-6">
+              <Card key={index} className="hover:shadow-lg transition-smooth flex flex-col">
+                <CardContent className="pt-6 flex-1 flex flex-col">
                   <BookOpen className="h-12 w-12 mb-4 text-secondary" />
-                  <h3 className="text-2xl font-bold mb-3">{program.title}</h3>
-                  <p className="text-muted-foreground mb-4">{program.description}</p>
+                  <h3 className="text-2xl font-bold mb-3">{program.category}</h3>
+                  <p className="text-muted-foreground mb-4 line-clamp-3 flex-1">
+                    {program.description}
+                  </p>
                   <div className="space-y-2 mb-6">
                     <div className="flex items-center gap-2 text-sm">
                       <Clock className="h-4 w-4 text-primary" />
-                      <span>{program.duration}</span>
+                      <span>{program.items[0]?.duration || "Flexible"}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <Calendar className="h-4 w-4 text-primary" />
-                      <span>{program.mode}</span>
+                      <span>{program.items[0]?.mode || "Blended/Online"}</span>
                     </div>
                   </div>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link to={program.href}>
-                      Learn More <ChevronRight className="ml-2 h-4 w-4" />
+                    <Link to={`/programs/${program.id}`}>
+                      View Details <ChevronRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </CardContent>
               </Card>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Button variant="secondary" size="lg" asChild>
-              <Link to="/programs">View All Programs</Link>
-            </Button>
-          </div>
+
         </div>
       </section>
 
-      {/* Campus Preview */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">Our Campus</Badge>
-              <h2 className="text-4xl font-bold mb-6">State-of-the-Art Facilities</h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Our modern campus provides the perfect environment for learning, collaboration, and innovation. With
-                cutting-edge facilities and resources, students have everything they need to succeed.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3">
-                  <div className="h-6 w-6 rounded-full bg-secondary/20 flex items-center justify-center">
-                    <ChevronRight className="h-4 w-4 text-secondary" />
-                  </div>
-                  <span>Modern classrooms with advanced technology</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="h-6 w-6 rounded-full bg-secondary/20 flex items-center justify-center">
-                    <ChevronRight className="h-4 w-4 text-secondary" />
-                  </div>
-                  <span>Extensive digital library and research facilities</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="h-6 w-6 rounded-full bg-secondary/20 flex items-center justify-center">
-                    <ChevronRight className="h-4 w-4 text-secondary" />
-                  </div>
-                  <span>Collaborative workspaces and lounges</span>
-                </li>
-              </ul>
-              <Button variant="secondary" asChild>
-                <Link to="/about">Take a Virtual Tour</Link>
-              </Button>
-            </div>
-            <div className="relative h-[500px] rounded-lg overflow-hidden shadow-lg">
-              <img src={campusImage} alt="Campus building" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Testimonials */}
       <section className="py-20">
@@ -291,38 +211,111 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Upcoming Events */}
-      <section className="py-20 bg-muted/30">
+      {/* Key Details Section */}
+      <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Upcoming Events</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join us for exciting campus events and opportunities
-            </p>
+            <h2 className="text-4xl font-bold mb-4">Key Details</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {upcomingEvents.map((event, index) => (
-              <Card key={index} className="hover:shadow-lg transition-smooth">
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-bold mb-3">{event.title}</h3>
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-primary" />
-                      <span>{event.date}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-primary" />
-                      <span>{event.time}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-primary" />
-                      <span>{event.location}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Calendar className="h-6 w-6 text-secondary" />
+                <h3 className="text-xl font-bold">Launch Date</h3>
+              </div>
+              <p className="text-primary-foreground/90">
+                January 2026<br />
+                <span className="text-sm opacity-75">(pre-enrolment opens Sept 2025)</span>
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <MapPin className="h-6 w-6 text-secondary" />
+                <h3 className="text-xl font-bold">Campus Location</h3>
+              </div>
+              <p className="text-primary-foreground/90">
+                Namugongo - Kampala, Uganda<br />
+                <span className="text-sm opacity-75">(with blended/online delivery options)</span>
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <BookOpen className="h-6 w-6 text-secondary" />
+                <h3 className="text-xl font-bold">Admission Info</h3>
+              </div>
+              <p className="text-primary-foreground/90">
+                Visit our website or contact our Admissions Office for entry requirements, fees and scholarships.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Phone className="h-6 w-6 text-secondary" />
+                <h3 className="text-xl font-bold">Contact Us</h3>
+              </div>
+              <div className="space-y-2 text-primary-foreground/90">
+
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  <span>+256772327732</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  <span>+256782996126</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Globe className="h-4 w-4" />
+                  <a href="https://peakpointbusinessschool.com" className="hover:text-secondary">peakpointbusinessschool.com</a>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div className="mt-12 text-center border-t border-primary-foreground/20 pt-8">
+            <p className="mb-4 text-lg">Connect with us for updates and launches</p>
+            <div className="flex justify-center gap-4">
+              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10" asChild>
+                <a href="https://www.linkedin.com/company/peakpoint-business-school/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-6 w-6" />
+                </a>
+              </Button>
+              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10" asChild>
+                <a href="https://www.facebook.com/profile.php?id=61583443073536" target="_blank" rel="noopener noreferrer">
+                  <Facebook className="h-6 w-6" />
+                </a>
+              </Button>
+              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10" asChild>
+                <a href="https://x.com/peakpointbusscl" target="_blank" rel="noopener noreferrer">
+                  <Twitter className="h-6 w-6" />
+                </a>
+              </Button>
+              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10" asChild>
+                <a href="https://www.youtube.com/@PeakpointBusinessSchool" target="_blank" rel="noopener noreferrer">
+                  <Youtube className="h-6 w-6" />
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Next Step Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Next Step</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Your future starts now. Whether you’re launching a new career, moving up the ladder, or building a
+            business – Peakpoint Business School gives you the platform to move further, faster.
+          </p>
+          <p className="text-lg font-semibold text-primary mb-8">
+            Apply now for January 2026 enrolment. Be part of our first intake and set the pace for success.
+          </p>
+          <p className="text-muted-foreground italic">
+            Peakpoint Business School Limited – Empowering you with knowledge, skills and enterprise for the
+            world of tomorrow.
+          </p>
         </div>
       </section>
 

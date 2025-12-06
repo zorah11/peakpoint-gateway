@@ -11,6 +11,12 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,10 +31,9 @@ const Header = () => {
   }, []);
 
   const programs = [
-    { name: "Undergraduate Programs", href: "/programs/undergraduate" },
-    { name: "Masters Programs", href: "/programs/masters" },
-    { name: "Professional Courses", href: "/programs/professional" },
-    { name: "Vocational Training", href: "/programs/vocational" },
+    { name: "Postgraduate Diplomas & Master’s Programmes", href: "/programs/postgraduate-masters" },
+    { name: "Professional Courses (CPAU)", href: "/programs/professional-cpau" },
+    { name: "Short Business Courses", href: "/programs/short-business-courses" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -45,9 +50,7 @@ const Header = () => {
         {/* Main Navigation */}
         <div className="flex items-center justify-between py-4">
           <Link to="/" className="flex items-center gap-3">
-            <div className="bg-gradient-hero p-2 rounded-lg">
-              <GraduationCap className="h-8 w-8 text-primary-foreground" />
-            </div>
+            <img src={logo} alt="PeakPoint Logo" className="h-12 w-auto" />
             <div>
               <h1 className="text-xl font-bold text-foreground">PEAKPOINT</h1>
               <p className="text-xs text-muted-foreground">Business School</p>
@@ -99,21 +102,12 @@ const Header = () => {
             </NavigationMenu>
 
             <Link
-              to="/admissions"
+              to="/research-coaching"
               className={`px-4 py-2 rounded-md transition-smooth hover:bg-muted ${
-                isActive("/admissions") ? "text-primary font-medium" : "text-foreground"
+                isActive("/research-coaching") ? "text-primary font-medium" : "text-foreground"
               }`}
             >
-              Admissions
-            </Link>
-
-            <Link
-              to="/student-life"
-              className={`px-4 py-2 rounded-md transition-smooth hover:bg-muted ${
-                isActive("/student-life") ? "text-primary font-medium" : "text-foreground"
-              }`}
-            >
-              Student Life
+              Research & Coaching
             </Link>
 
             <Link
@@ -125,9 +119,8 @@ const Header = () => {
               Contact
             </Link>
 
-            {/* Apply button moved into main navigation */}
-            <Button variant="secondary" size="sm" asChild className="ml-4">
-              <Link to="/apply">Apply Now</Link>
+            <Button variant="default" size="sm" asChild className="ml-4">
+              <Link to="/login">Login</Link>
             </Button>
           </nav>
 
@@ -141,8 +134,8 @@ const Header = () => {
             <SheetContent side="right" className="w-[300px] bg-card">
               <nav className="flex flex-col gap-4 mt-8">
                 <div className="px-4">
-                  <Button variant="secondary" size="sm" asChild className="w-full">
-                    <Link to="/apply">Apply Now</Link>
+                  <Button variant="default" size="sm" asChild className="w-full">
+                    <Link to="/login">Login</Link>
                   </Button>
                 </div>
                 <Link to="/" className="text-lg font-medium hover:text-primary transition-smooth">
@@ -151,25 +144,25 @@ const Header = () => {
                 <Link to="/about" className="text-lg font-medium hover:text-primary transition-smooth">
                   About
                 </Link>
-                <div>
-                  <p className="text-lg font-medium mb-2">Programs</p>
-                  <div className="flex flex-col gap-2 ml-4">
+                <Collapsible>
+                  <CollapsibleTrigger className="flex items-center justify-between w-full text-lg font-medium hover:text-primary transition-smooth group">
+                    Programs
+                    <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="flex flex-col gap-2 ml-4 mt-2">
                     {programs.map((program) => (
                       <Link
                         key={program.href}
                         to={program.href}
-                        className="text-muted-foreground hover:text-primary transition-smooth"
+                        className="text-muted-foreground hover:text-primary transition-smooth text-sm py-1"
                       >
                         {program.name}
                       </Link>
                     ))}
-                  </div>
-                </div>
-                <Link to="/admissions" className="text-lg font-medium hover:text-primary transition-smooth">
-                  Admissions
-                </Link>
-                <Link to="/student-life" className="text-lg font-medium hover:text-primary transition-smooth">
-                  Student Life
+                  </CollapsibleContent>
+                </Collapsible>
+                <Link to="/research-coaching" className="text-lg font-medium hover:text-primary transition-smooth">
+                  Research & Coaching
                 </Link>
                 <Link to="/contact" className="text-lg font-medium hover:text-primary transition-smooth">
                   Contact
